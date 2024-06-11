@@ -1,0 +1,197 @@
+{
+    "Name": "ClothCollisionScene1",
+    "RigidBodies": [
+        {
+            "id": 1,
+            "rotationAxis": [
+                0,
+                0,
+                1
+            ],
+            "rotationAngle": 0.0,
+            "translation": [
+                0.0,
+                0.0,
+                -0.05
+            ],
+            "geometryFile": "/home/burak/catkin_ws_deformable/src/dlo_simulator_stiff_rods/data/mesh/cube_5.obj",
+            "scale": [
+                6.0,
+                6.0,
+                0.1
+            ],
+            "collisionObjectScale": [
+                6.0,
+                6.0,
+                0.1
+            ],
+            "isDynamic": 0,
+            "density": 1.0,
+            "velocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "restitution": 0.0,
+            "frictionStatic": 0.5,
+            "frictionDynamic": 0.5,
+            "comment": "collisionObjectFileName can contain the path of an SDF file or if it is empty, the simulator will generate an SDF using the mesh in the geometryFile",
+            "collisionObjectFileName": "",
+            "resolutionSDF": [
+                50,
+                50,
+                50
+            ],
+            "invertSDF": 0
+        },
+        {
+            "id": 2,
+            "rotationAxis": [
+                0,
+                0,
+                1
+            ],
+            "rotationAngle": 0.0,
+            "translation": [
+                0.0,
+                1.0,
+                0.5
+            ],
+            "geometryFile": "/home/burak/catkin_ws_deformable/src/dlo_simulator_stiff_rods/data/mesh/cube_5.obj",
+            "scale": [
+                1.5,
+                1.0,
+                1.0
+            ],
+            "collisionObjectScale": [
+                1.5,
+                1.0,
+                1.0
+            ],
+            "isDynamic": 0,
+            "density": 1.0,
+            "velocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "restitution": 0.0,
+            "frictionStatic": 0.5,
+            "frictionDynamic": 0.5,
+            "comment": "collisionObjectFileName can contain the path of an SDF file or if it is empty, the simulator will generate an SDF using the mesh in the geometryFile",
+            "collisionObjectFileName": "",
+            "resolutionSDF": [
+                50,
+                50,
+                50
+            ],
+            "invertSDF": 0
+        },
+        {
+            "id": 3,
+            "rotationAxis": [
+                0,
+                0,
+                1
+            ],
+            "rotationAngle": 0.0,
+            "translation": [
+                -1.0,
+                -1.0,
+                0.15
+            ],
+            "geometryFile": "/home/burak/catkin_ws_deformable/src/dlo_simulator_stiff_rods/data/mesh/tent_pole_grommet.obj",
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "collisionObjectScale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "isDynamic": 0,
+            "density": 1.0,
+            "velocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "restitution": 0.0,
+            "frictionStatic": 0.5,
+            "frictionDynamic": 0.5,
+            "comment": "collisionObjectFileName can contain the path of an SDF file or if it is empty, the simulator will generate an SDF using the mesh in the geometryFile",
+            "collisionObjectFileName": "",
+            "resolutionSDF": [
+                50,
+                50,
+                50
+            ],
+            "invertSDF": 0
+        },
+        {
+            "id": 4,
+            "rotationAxis": [
+                0,
+                0,
+                1
+            ],
+            "rotationAngle": 0.0,
+            "translation": [
+                1.0,
+                -1.0,
+                0.15
+            ],
+            "geometryFile": "/home/burak/catkin_ws_deformable/src/dlo_simulator_stiff_rods/data/mesh/tent_pole_grommet.obj",
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "collisionObjectScale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "isDynamic": 0,
+            "density": 1.0,
+            "velocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "restitution": 0.0,
+            "frictionStatic": 0.5,
+            "frictionDynamic": 0.5,
+            "comment": "collisionObjectFileName can contain the path of an SDF file or if it is empty, the simulator will generate an SDF using the mesh in the geometryFile",
+            "collisionObjectFileName": "",
+            "resolutionSDF": [
+                50,
+                50,
+                50
+            ],
+            "invertSDF": 0
+        }
+    ]
+}

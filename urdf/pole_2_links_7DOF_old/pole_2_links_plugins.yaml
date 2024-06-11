@@ -1,0 +1,69 @@
+kinematic_plugins:
+  search_libraries:
+    - tesseract_kinematics_kdl_factories
+  fwd_kin_plugins:
+    positioner:
+      default: KDLFwdKinChain
+      plugins:
+        KDLFwdKinChain:
+          class: KDLFwdKinChainFactory
+          config:
+            base_link: base_link
+            tip_link: cylindrical_1_end1_link # tool0 # cylindrical_left_1_end1_link # tool0
+    extension:
+      default: KDLFwdKinChain
+      plugins:
+        KDLFwdKinChain:
+          class: KDLFwdKinChainFactory
+          config:
+            base_link: cylindrical_1_end1_link
+            tip_link: cylindrical_2_end1_link # tool0 # cylindrical_left_1_end1_link # tool0
+    manipulator:
+      default: KDLFwdKinChain
+      plugins:
+        KDLFwdKinChain:
+          class: KDLFwdKinChainFactory
+          config:
+            base_link: base_link
+            tip_link: cylindrical_2_end1_link # tool0 # cylindrical_left_1_end1_link # tool0
+  inv_kin_plugins:
+    positioner:
+      default: KDLInvKinChainLMA
+      plugins:
+        KDLInvKinChainLMA:
+          class: KDLInvKinChainLMAFactory
+          config:
+            base_link: base_link
+            tip_link: cylindrical_1_end1_link # tool0 # cylindrical_left_1_end1_link # tool0
+        KDLInvKinChainNR:
+          class: KDLInvKinChainNRFactory
+          config:
+            base_link: base_link
+            tip_link: cylindrical_1_end1_link  # tool0 # cylindrical_left_1_end1_link # tool0
+    extension:
+      default: KDLInvKinChainLMA
+      plugins:
+        KDLInvKinChainLMA:
+          class: KDLInvKinChainLMAFactory
+          config:
+            base_link: cylindrical_1_end1_link
+            tip_link: cylindrical_2_end1_link # tool0 # cylindrical_left_1_end1_link # tool0
+        KDLInvKinChainNR:
+          class: KDLInvKinChainNRFactory
+          config:
+            base_link: cylindrical_1_end1_link
+            tip_link: cylindrical_2_end1_link  # tool0 # cylindrical_left_1_end1_link # tool0
+    manipulator:
+      default: KDLInvKinChainLMA
+      plugins:
+        KDLInvKinChainLMA:
+          class: KDLInvKinChainLMAFactory
+          config:
+            base_link: base_link
+            tip_link: cylindrical_2_end1_link # tool0 # cylindrical_left_1_end1_link # tool0
+        KDLInvKinChainNR:
+          class: KDLInvKinChainNRFactory
+          config:
+            base_link: base_link
+            tip_link: cylindrical_2_end1_link  # tool0 # cylindrical_left_1_end1_link # tool0
+

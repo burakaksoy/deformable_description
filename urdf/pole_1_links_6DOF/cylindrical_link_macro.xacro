@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="materials.xacro"/>
+
+    <xacro:macro name="cylindrical_link" params="prefix length diameter root='center'">
+        <!-- Define the center link -->
+        <xacro:if value="${root == 'center'}">
+            <xacro:property name="center_origin" value="0 0 0"/>
+            <xacro:property name="end1_origin" value="0 0 ${length / 2}"/>
+            <xacro:property name="end2_origin" value="0 0 ${-length / 2}"/>
+
+            <!-- Visual and collision for center link -->
+            <link name="${prefix}_${root}_link">
+                <visual>
+                    <geometry>
+                        <cylinder length="${length}" radius="${diameter / 2}"/>
+                    </geometry>
+                    <origin xyz="${center_origin}" rpy="0 0 0"/>
+                    <material name="teal"/>
+                </visual>
+                <collision>
+                    <geometry>
+                        <cylinder length="${length}" radius="${diameter / 2}"/>
+                    </geometry>
+                    <origin xyz="${center_origin}" rpy="0 0 0"/>
+                </collision>
+            </link>
+            <link name="${prefix}_end1_link"/>
+            <link name="${prefix}_end2_link"/>
+
+            <joint name="${prefix}_end1_joint" type="fixed">
+                <origin xyz="${end1_origin}" rpy="0 0 0"/>
+                <parent link="${prefix}_center_link"/>
+                <child link="${prefix}_end1_link"/>
+            </joint>
+
+            <joint name="${prefix}_end2_joint" type="fixed">
+                <origin xyz="${end2_origin}" rpy="0 0 0"/>
+                <parent link="${prefix}_center_link"/>
+                <child link="${prefix}_end2_link"/>
+            </joint>
+        </xacro:if>
+
+        <!-- Define end1 as root -->
+        <xacro:if value="${root == 'end1'}">
+            <xacro:property name="center_origin" value="0 0 -${length / 2}"/>
+            <xacro:property name="end1_origin" value="0 0 0"/>
+            <xacro:property name="end2_origin" value="0 0 -${length}"/>
+
+            <!-- Visual and collision for center link -->
+            <link name="${prefix}_${root}_link">
+                <visual>
+                    <geometry>
+                        <cylinder length="${length}" radius="${diameter / 2}"/>
+                    </geometry>
+                    <origin xyz="${center_origin}" rpy="0 0 0"/>
+                    <material name="teal"/>
+                </visual>
+                <collision>
+                    <geometry>
+                        <cylinder length="${length}" radius="${diameter / 2}"/>
+                    </geometry>
+                    <origin xyz="${center_origin}" rpy="0 0 0"/>
+                </collision>
+            </link>
+            <link name="${prefix}_center_link"/>
+            <link name="${prefix}_end2_link"/>
+
+            <joint name="${prefix}_center_joint" type="fixed">
+                <origin xyz="${center_origin}" rpy="0 0 0"/>
+                <parent link="${prefix}_end1_link"/>
+                <child link="${prefix}_center_link"/>
+            </joint>
+
+            <joint name="${prefix}_end2_joint" type="fixed">
+                <origin xyz="${end2_origin}" rpy="0 0 0"/>
+                <parent link="${prefix}_end1_link"/>
+                <child link="${prefix}_end2_link"/>
+            </joint>
+        </xacro:if>
+
+        <!-- Define end2 as root -->
+        <xacro:if value="${root == 'end2'}">
+            <xacro:property name="center_origin" value="0 0 ${length / 2}"/>
+            <xacro:property name="end1_origin" value="0 0 ${length}"/>
+            <xacro:property name="end2_origin" value="0 0 0"/>
+
+            <!-- Visual and collision for center link -->
+            <link name="${prefix}_${root}_link">
+                <visual>
+                    <geometry>
+                        <cylinder length="${length}" radius="${diameter / 2}"/>
+                    </geometry>
+                    <origin xyz="${center_origin}" rpy="0 0 0"/>
+                    <material name="teal"/>
+                </visual>
+                <collision>
+                    <geometry>
+                        <cylinder length="${length}" radius="${diameter / 2}"/>
+                    </geometry>
+                    <origin xyz="${center_origin}" rpy="0 0 0"/>
+                </collision>
+            </link>
+            <link name="${prefix}_end1_link"/>
+            <link name="${prefix}_center_link"/>
+
+            <joint name="${prefix}_center_joint" type="fixed">
+                <origin xyz="${center_origin}" rpy="0 0 0"/>
+                <parent link="${prefix}_end2_link"/>
+                <child link="${prefix}_center_link"/>
+            </joint>
+
+            <joint name="${prefix}_end1_joint" type="fixed">
+                <origin xyz="${end1_origin}" rpy="0 0 0"/>
+                <parent link="${prefix}_end2_link"/>
+                <child link="${prefix}_end1_link"/>
+            </joint>
+        </xacro:if>
+
+        
+
+    </xacro:macro>
+</robot>

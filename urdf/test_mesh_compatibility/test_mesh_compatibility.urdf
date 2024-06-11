@@ -1,0 +1,147 @@
+<?xml version="1.0" ?>
+
+<!-- This file is created to test the compatibility of different mesh file formats with the URDF parser. -->
+<!-- The following mesh file formats are tested: -->
+<!-- 1. OBJ -->
+<!-- 2. STL (BINARY) -->
+<!-- 3. DAE (COLLADA) -->
+<!-- 4. PLY -->
+
+<!-- Note: A ROS URDF will ignore these custom elements like "collision_checking", and your particular program can parse the XML itself to get this information. (source: https://wiki.ros.org/urdf/XML/link) -->
+
+<robot name="test_mesh_compatibility">
+
+  <!-- Base link -->
+  <link name="base_link"/>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <!-- OBJ FILE TESTING -->
+  <!-- OBSERVATIONS: -->
+  <!-- 1. COLOR DOES NOT AFFECT the color -->
+  <!-- 2. scaling works! -->
+
+  <link name="link_test_obj_file">
+    <contact>
+      <lateral_friction value="0.5"/>
+      <rolling_friction value="0.0"/>
+      <contact_cfm value="0.0"/>
+      <contact_erp value="1.0"/>
+    </contact>
+
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="">
+        <color rgba="1.0 0.0 0.0 1"/>
+      </material>
+      <geometry>
+        <mesh filename="package://deformable_description/meshes/cube.obj" scale="1 1 2"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://deformable_description/meshes/cube.obj" scale="1 1 2"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Add a fixed joint between the base link and link_test_obj_file -->
+  <joint name="joint_test_obj_file" type="fixed">
+    <parent link="base_link"/>
+    <child link="link_test_obj_file"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <!-- STL FILE TESTING -->
+  <!-- OBSERVATIONS: -->
+  <!-- 1. color WORKS! -->
+  <!-- 2. scaling works! -->
+
+  <link name="link_test_stl_file">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="">
+        <color rgba="0.8 0.8 0.5 1"/>
+      </material>
+      <geometry>
+        <mesh filename="package://deformable_description/meshes/cylinder.stl" scale="1 1 0.5"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://deformable_description/meshes/cylinder.stl" scale="1 1 0.5"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Add a fixed joint between the base link and link_test_stl_file -->
+  <joint name="joint_test_stl_file" type="fixed">
+    <parent link="base_link"/>
+    <child link="link_test_stl_file"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <!-- DAE FILE TESTING -->
+  <!-- OBSERVATIONS: -->
+  <!-- 1. COLOR DOES NOT AFFECT the color -->
+  <!-- 2. scaling works! -->
+
+  <link name="link_test_dae_file">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="">
+        <color rgba="0 1 1 1"/>
+      </material>
+      <geometry>
+        <mesh filename="package://deformable_description/meshes/sphere.dae" scale="1 0.5 1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://deformable_description/meshes/sphere.dae" scale="1 0.5 1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Add a fixed joint between the base link and link_test_dae_file -->
+  <joint name="joint_test_dae_file" type="fixed">
+    <parent link="base_link"/>
+    <child link="link_test_dae_file"/>
+    <origin rpy="0 0 0" xyz="1 1 0"/>
+  </joint>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <!-- PLY FILE TESTING -->
+  <!-- OBSERVATIONS: -->
+  <!-- 1. COLOR DOES NOT AFFECT the color -->
+  <!-- 2. scaling works! -->
+
+  <link name="link_test_ply_file">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="">
+        <color rgba="0 1 0 1"/>
+      </material>
+      <geometry>
+        <mesh filename="package://deformable_description/meshes/sphere_p25m.ply" scale="1.5 1.5 1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://deformable_description/meshes/sphere_p25m.ply" scale="1.5 1.5 1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Add a fixed joint between the base link and link_test_ply_file -->
+  <joint name="joint_test_ply_file" type="fixed">
+    <parent link="base_link"/>
+    <child link="link_test_ply_file"/>
+    <origin rpy="0 0 0" xyz="-2 -2 0"/>
+  </joint>
+
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+</robot>
+

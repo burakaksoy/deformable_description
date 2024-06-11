@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<robot name="ClothCollisionScene1">
+  <link name="ClothCollisionScene1"/>
+  <link name="link_cube_5_id_1">
+    <visual>
+      <geometry>
+        <mesh filename="package://dlo_simulator_stiff_rods/data/mesh/cube_5.obj" scale="6.0 6.0 0.1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://dlo_simulator_stiff_rods/data/mesh/cube_5.obj" scale="6.0 6.0 0.1"/>
+      </geometry>
+    </collision>
+    <isDynamic>0</isDynamic>
+    <density>500</density>
+    <velocity>[0, 0, 0]</velocity>
+    <angularVelocity>[0, 0, 0]</angularVelocity>
+    <restitution>0.2</restitution>
+    <frictionStatic>7.4</frictionStatic>
+    <frictionDynamic>7.2</frictionDynamic>
+    <comment>collisionObjectFileName can contain the path of an SDF file or if it is empty, the simulator will generate an SDF using the mesh in the geometryFile</comment>
+    <collisionObjectFileName>../scenes/Cache/sphere.obj_50_50_50.csdf</collisionObjectFileName>
+    <resolutionSDF>[60, 60, 60]</resolutionSDF>
+    <invertSDF>0</invertSDF>
+  </link>
+  <joint name="joint_link_cube_5_id_1" type="fixed">
+    <parent link="ClothCollisionScene1"/>
+    <child link="link_cube_5_id_1"/>
+    <origin xyz="0 0 -0.05" rpy="0.0 0.0 0.0"/>
+  </joint>
+  <link name="link_cube_5_id_2">
+    <visual>
+      <geometry>
+        <mesh filename="package://dlo_simulator_stiff_rods/data/mesh/cube_5.obj" scale="1.5 1.0 1.0"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://dlo_simulator_stiff_rods/data/mesh/cube_5.obj" scale="1.5 1.0 1.0"/>
+      </geometry>
+    </collision>
+    <isDynamic>0</isDynamic>
+    <density>500</density>
+    <velocity>[0, 0, 0]</velocity>
+    <angularVelocity>[0, 0, 0]</angularVelocity>
+    <restitution>0.0</restitution>
+    <frictionStatic>3.4</frictionStatic>
+    <frictionDynamic>3.4</frictionDynamic>
+    <comment>collisionObjectFileName can contain the path of an SDF file or if it is empty, the simulator will generate an SDF using the mesh in the geometryFile</comment>
+    <collisionObjectFileName>../scenes/Cache/sphere.obj_50_50_50.csdf</collisionObjectFileName>
+    <resolutionSDF>[50, 50, 50]</resolutionSDF>
+    <invertSDF>0</invertSDF>
+  </link>
+  <joint name="joint_link_cube_5_id_2" type="fixed">
+    <parent link="ClothCollisionScene1"/>
+    <child link="link_cube_5_id_2"/>
+    <origin xyz="0 1 0.5" rpy="0.0 0.0 0.0"/>
+  </joint>
+  <link name="link_tent_pole_grommet_id_3">
+    <visual>
+      <geometry>
+        <mesh filename="package://dlo_simulator_stiff_rods/data/mesh/tent_pole_grommet.obj" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://dlo_simulator_stiff_rods/data/mesh/tent_pole_grommet.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <isDynamic>0</isDynamic>
+    <density>500</density>
+    <velocity>[0, 0, 0]</velocity>
+    <angularVelocity>[0, 0, 0]</angularVelocity>
+    <restitution>0.0</restitution>
+    <frictionStatic>0.0</frictionStatic>
+    <frictionDynamic>0.0</frictionDynamic>
+    <comment>collisionObjectFileName can contain the path of an SDF file or if it is empty, the simulator will generate an SDF using the mesh in the geometryFile</comment>
+    <collisionObjectFileName>package://dlo_simulator_stiff_rods/data/mesh/tent_pole_grommet.obj_80_80_80.csdf</collisionObjectFileName>
+    <resolutionSDF>[250, 250, 250]</resolutionSDF>
+    <invertSDF>0</invertSDF>
+  </link>
+  <joint name="joint_link_tent_pole_grommet_id_3" type="fixed">
+    <parent link="ClothCollisionScene1"/>
+    <child link="link_tent_pole_grommet_id_3"/>
+    <origin xyz="-1 -1 0.15" rpy="0.0 0.0 0.0"/>
+  </joint>
+  <link name="link_tent_pole_grommet_id_4">
+    <visual>
+      <geometry>
+        <mesh filename="package://dlo_simulator_stiff_rods/data/mesh/tent_pole_grommet.obj" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://dlo_simulator_stiff_rods/data/mesh/tent_pole_grommet.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <isDynamic>0</isDynamic>
+    <density>500</density>
+    <velocity>[0, 0, 0]</velocity>
+    <angularVelocity>[0, 0, 0]</angularVelocity>
+    <restitution>0.0</restitution>
+    <frictionStatic>0.0</frictionStatic>
+    <frictionDynamic>0.0</frictionDynamic>
+    <comment>collisionObjectFileName can contain the path of an SDF file or if it is empty, the simulator will generate an SDF using the mesh in the geometryFile</comment>
+    <collisionObjectFileName>package://dlo_simulator_stiff_rods/data/mesh/tent_pole_grommet.obj_80_80_80.csdf</collisionObjectFileName>
+    <resolutionSDF>[250, 250, 250]</resolutionSDF>
+    <invertSDF>0</invertSDF>
+  </link>
+  <joint name="joint_link_tent_pole_grommet_id_4" type="fixed">
+    <parent link="ClothCollisionScene1"/>
+    <child link="link_tent_pole_grommet_id_4"/>
+    <origin xyz="1 -1 0.15" rpy="0.0 -0.0 0.0"/>
+  </joint>
+</robot>

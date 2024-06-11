@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="pole">
+  <xacro:property name="PI" value="3.1415926535897931" />
+  <xacro:property name="pole_l" value="3.3528" />
+  <xacro:property name="pole_r" value="0.035" />
+  
+  <xacro:property name="cartesian_joint_effort_main" value="10000"/>
+  <xacro:property name="spherical_joint_effort_main" value="10000"/>
+
+  <xacro:property name="num_cylindrical_links" value="2" />
+
+  <xacro:if value="${num_cylindrical_links % 2 == 0}">
+    <xacro:property name="num_spherical_joints" value="${num_cylindrical_links}" />
+  </xacro:if>
+  <xacro:unless value="${num_cylindrical_links % 2 == 0}">
+    <xacro:property name="num_spherical_joints" value="${num_cylindrical_links - 1}" />
+  </xacro:unless>
+
+  <xacro:property name="total_bend_limit" value="${PI}" />
+
+  <xacro:property name="spherical_joint_limit" value="${total_bend_limit/num_spherical_joints}"/>
+  <xacro:property name="spherical_joint_effort" value="1"/>
+
+  
+  <!-- Include statements for macros -->
+  <xacro:include filename="cartesian_joint_macro.xacro"/>
+  <xacro:include filename="spherical_joint_macro.xacro"/>
+  <xacro:include filename="cylindrical_link_macro.xacro"/>
+
+  <!-- Base link -->
+  <link name="base_link"/>
+
+  <!-- Instantiate the MAIN Cartesian Joint Macro -->
+  <xacro:cartesian_joint prefix="cartesian" lower_limit="-3" upper_limit="3" effort="${cartesian_joint_effort_main}" velocity="1.5"/>
+
+  <!-- Instantiate the MAIN Spherical Joint Macro -->
+  <xacro:spherical_joint prefix="spherical" lower_limit="-${PI}" upper_limit="${PI}" effort="${spherical_joint_effort_main}" velocity="${PI/2}"/>
+
+  <!-- Tool link is where the tip of the combined cartesian + spherical joints is at -->
+  <link name="tool0"/>
+
+  <!-- Connections between components -->
+  
+  <!-- Connect Cartesian joint system to the base -->
+  <joint name="base_to_cartesian" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/> 
+    <parent link="base_link"/>
+    <child link="cartesian_parent_link"/>
+  </joint>
+
+  <!-- Connect spherical joint to the top of the cartesian joint -->
+  <joint name="cartesian_to_spherical" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/> 
+    <parent link="cartesian_z_link"/>
+    <child link="spherical_parent_link"/>
+  </joint>
+
+  <!-- Connect the tool link with the the tip of the combined cartesian + spherical joints -->
+  <joint name="spherical_to_tool0" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/> 
+    <parent link="spherical_roll_link"/>
+    <child link="tool0"/>
+  </joint>
+
+
+  <!-- Instantiate the Cylindrical Link Macros of the LEFT side -->
+  <xacro:cylindrical_link prefix="cylindrical_left_1" length="${pole_l/num_cylindrical_links}" diameter="${2*pole_r}" root="end2"/>
+
+  <!-- Add spherical joint between tool0 to end2_link of cylindrical_left_1 -->
+  <xacro:spherical_joint prefix="spherical_left_1" lower_limit="-${spherical_joint_limit/2.0}" upper_limit="${spherical_joint_limit/2.0}" effort="${spherical_joint_effort}" velocity="${PI/2}"/>
+  
+  <!-- Connect the spherical joint to the tool0 -->
+  <joint name="tool0_to_spherical_left_1" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="tool0"/>
+    <child link="spherical_left_1_parent_link"/>
+  </joint>
+
+  <!-- Connect the spherical joint to the cylindrical_left_1 -->
+  <joint name="spherical_left_1_to_cylindrical_left_1" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="spherical_left_1_roll_link"/>
+    <child link="cylindrical_left_1_end2_link"/>
+  </joint>
+
+  <!-- Instantiate the Cylindrical Link Macros of the RIGHT side -->
+  <xacro:cylindrical_link prefix="cylindrical_right_1" length="${pole_l/num_cylindrical_links}" diameter="${2*pole_r}" root="end1"/>
+
+  <!-- Add spherical joint between tool0 to end2_link of cylindrical_right_1 -->
+  <xacro:spherical_joint prefix="spherical_right_1" lower_limit="-${spherical_joint_limit/2.0}" upper_limit="${spherical_joint_limit/2.0}" effort="${spherical_joint_effort}" velocity="${PI/2}"/>
+
+  <!-- Connect the spherical joint to the tool0 -->
+  <joint name="tool0_to_spherical_right_1" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="tool0"/>
+    <child link="spherical_right_1_parent_link"/>
+  </joint>
+
+  <!-- Connect the spherical joint to the cylindrical_right_1 -->
+  <joint name="spherical_right_1_to_cylindrical_right_1" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="spherical_right_1_roll_link"/>
+    <child link="cylindrical_right_1_end1_link"/>
+  </joint>
+
+</robot>

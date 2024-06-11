@@ -1,0 +1,53 @@
+{
+    "Name": "ClothCollisionScene1",
+    "RigidBodies": [
+        {
+            "id": 1,
+            "geometryFile": "/mesh/cube_5.obj",
+            "isDynamic": 0,
+            "density": 1.0,
+            "translation": [
+                0.0,
+                0.0,
+                -0.05
+            ],
+            "rotationAxis": [
+                0,
+                0,
+                1
+            ],
+            "rotationAngle": 0.0,
+            "scale": [
+                6.0,
+                6.0,
+                0.1
+            ],
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "angularVelocity": [
+                0,
+                0,
+                0
+            ],
+            "restitution": 0.0,
+            "frictionStatic": 0.5,
+            "frictionDynamic": 0.5,
+            "comment": "",
+            "collisionObjectFileName": "",
+            "collisionObjectScale": [
+                6.0,
+                6.0,
+                0.1
+            ],
+            "resolutionSDF": [
+                50,
+                50,
+                50
+            ],
+            "invertSDF": 0
+        }
+    ]
+}
