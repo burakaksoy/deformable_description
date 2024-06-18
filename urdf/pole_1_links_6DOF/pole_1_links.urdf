@@ -137,5 +137,18 @@
     <parent link="tool0"/>
     <child link="cylindrical_center_link"/>
   </joint>
+  <!-- Create robot holding points as fixed links -->
+  <link name="pole_holder_link_5"/>
+  <joint name="pole_holder_fixed_joint_5" type="fixed">
+    <parent link="tool0"/>
+    <child link="pole_holder_link_5"/>
+    <origin rpy="0 0 0" xyz="0 0 -1.2153899999999997"/>
+  </joint>
+  <link name="pole_holder_link_34"/>
+  <joint name="pole_holder_fixed_joint_34" type="fixed">
+    <parent link="tool0"/>
+    <child link="pole_holder_link_34"/>
+    <origin rpy="0 0 0" xyz="0 0 1.21539"/>
+  </joint>
 </robot>
 

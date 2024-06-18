@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="pole">
   <xacro:property name="PI" value="3.1415926535897931" />
-  <xacro:property name="pole_l" value="3.35 28" />
+  <xacro:property name="pole_l" value="3.3528" />
   <xacro:property name="pole_r" value="0.035" />
+  <xacro:property name="pole_num_segments" value="40" />
   <xacro:property name="num_cylindrical_links" value="1" />
   
   <!-- Include statements for macros -->
@@ -55,5 +56,22 @@
     <parent link="tool0"/>
     <child link="cylindrical_center_link"/>
   </joint>
+
+  <!-- Create robot holding points as fixed links -->
+
+  <xacro:macro name="add_pole_holder_link" params="segment_id num_segments pole_length">
+    <link name="pole_holder_link_${segment_id}"></link>
+    
+    <joint name="pole_holder_fixed_joint_${segment_id}" type="fixed">
+      <parent link="tool0"/>
+      <child link="pole_holder_link_${segment_id}"/>
+      <origin xyz="0 0 ${-pole_length/2 + (pole_length * (1 + 2 * segment_id)) / (2 * num_segments)}" rpy="0 0 0"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:add_pole_holder_link segment_id="5" num_segments="${pole_num_segments}" pole_length="${pole_l}"/>
+  <xacro:add_pole_holder_link segment_id="34" num_segments="${pole_num_segments}" pole_length="${pole_l}"/>
+
+
 
 </robot>
