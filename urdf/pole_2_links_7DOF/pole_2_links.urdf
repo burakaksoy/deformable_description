@@ -84,7 +84,7 @@
     <limit effort="10000" lower="-3.1415926535897931" upper="3.1415926535897931" velocity="1.5707963267948966"/>
   </joint>
   <!-- Tool link is where the tip of the combined cartesian + spherical joints is at -->
-  <link name="tool0"/>
+  <link name="tool00"/>
   <!-- Connections between components -->
   <!-- Connect Cartesian joint system to the base -->
   <joint name="base_to_cartesian" type="fixed">
@@ -99,13 +99,13 @@
     <child link="spherical_parent_link"/>
   </joint>
   <!-- Connect the tool link with the the tip of the combined cartesian + spherical joints -->
-  <joint name="spherical_to_tool0" type="fixed">
+  <joint name="spherical_to_tool00" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <parent link="spherical_roll_link"/>
-    <child link="tool0"/>
+    <child link="tool00"/>
   </joint>
   <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-  <!-- Add a link from tool0 to left -->
+  <!-- Add a link from tool00 to left -->
   <link name="link_left_1_root">
     <visual>
       <geometry>
@@ -122,9 +122,9 @@
     </collision>
   </link>
   <!-- Connect tool0 to the root of left link -->
-  <joint name="tool0_to_link_left_1_root" type="fixed">
+  <joint name="tool00_to_link_left_1_root" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0"/>
-    <parent link="tool0"/>
+    <parent link="tool00"/>
     <child link="link_left_1_root"/>
   </joint>
   <!-- Define the tip of the left link -->
@@ -185,13 +185,31 @@
     <parent link="link_right_1_tip"/>
     <child link="link_right_1_root_back"/>
   </joint>
-  <!-- Define final tool as tool1 link -->
-  <link name="tool1"/>
-  <!-- Connect the right root back to the tool1 link -->
-  <joint name="joint_link_right_1_root_back_to_tool1" type="fixed">
+  <!-- Define final tool as tool0 link -->
+  <link name="tool0"/>
+  <!-- Connect the right root back to the tool0 link -->
+  <joint name="joint_link_right_1_root_back_to_tool0" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <parent link="link_right_1_root_back"/>
-    <child link="tool1"/>
+    <child link="tool0"/>
+  </joint>
+
+  <!-- Create robot holding points as fixed links -->
+  <link name="pole_holder_link_5"/>
+  
+  <joint name="pole_holder_fixed_joint_5" type="fixed">
+    <parent link="link_right_1_root_back"/>
+    <child link="pole_holder_link_5"/>
+    <origin rpy="0 0 0" xyz="0 0 -1.2153899999999997"/>
+  </joint>
+
+
+  <link name="pole_holder_link_34"/>
+  
+  <joint name="pole_holder_fixed_joint_34" type="fixed">
+    <parent link="link_left_1_root_back"/>
+    <child link="pole_holder_link_34"/>
+    <origin rpy="0 0 0" xyz="0 0 1.21539"/>
   </joint>
 </robot>
 
