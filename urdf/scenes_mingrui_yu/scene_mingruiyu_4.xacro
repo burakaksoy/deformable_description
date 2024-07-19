@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="scene_mingruiyu_0">
+  <xacro:property name="PI" value="3.1415926535897931" />
+
+  <!-- Include statements for macros -->
+  <xacro:include filename="square_pole_macro.xacro"/>
+  
+  <!-- GROUND PLANE -->
+  <link name="ground_plane">
+    <visual>
+      <geometry>
+        <box size="1 1 0.01"/>
+      </geometry>
+      <origin xyz="0 0 -0.005" rpy="0 0 0"/>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="1 1 0.01"/>
+      </geometry>
+      <origin xyz="0 0 -0.005" rpy="0 0 0"/>
+    </collision>
+  </link>
+
+  <!-- OBSTACLES (created from square poles) -->
+
+  <!-- ====================== POLE 1 : BEGIN ====================== -->
+  <!-- MAIN SHAFT -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_1" parent_link="ground_plane" length="0.35" thickness="0.02">
+    <origin xyz="0.0 -0.22 0.0" rpy="0 0 0"/>
+  </xacro:square_pole>
+
+  <!-- ATTACHMENT 1. TOWARDS +X AXIS  -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_1_attachment_1" parent_link="pole_1_root_link" length="0.06" thickness="0.02">
+    <origin xyz="0.01 0.0 0.30" rpy="${PI/2.0} 0 ${PI/2.0}"/>
+  </xacro:square_pole>
+
+  <!-- ATTACHMENT 2. TOWARDS +X AXIS  -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_1_attachment_2" parent_link="pole_1_root_link" length="0.06" thickness="0.02">
+    <origin xyz="0.01 0.0 0.07" rpy="${PI/2.0} 0 ${PI/2.0}"/>
+  </xacro:square_pole>
+  <!-- ====================== POLE 1 : END ====================== -->
+
+  <!-- ====================== POLE 2 : BEGIN ====================== -->
+  <!-- MAIN SHAFT -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_2" parent_link="ground_plane" length="0.32" thickness="0.02">
+    <origin xyz="0.08 -0.12 0.0" rpy="0 0 0"/>
+  </xacro:square_pole>
+
+  <!-- ATTACHMENT 1. TOWARDS +X AXIS  -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_2_attachment_1" parent_link="pole_2_root_link" length="0.02" thickness="0.02">
+    <origin xyz="0.01 0.0 0.29" rpy="${PI/2.0} 0 ${PI/2.0}"/>
+  </xacro:square_pole>
+
+  <!-- ATTACHMENT 2. TOWARDS -X AXIS  -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_2_attachment_2" parent_link="pole_2_root_link" length="0.02" thickness="0.02">
+    <origin xyz="-0.01 0.0 0.29" rpy="${PI/2.0} 0 ${3*PI/2.0}"/>
+  </xacro:square_pole>
+
+  <!-- ATTACHMENT 3. TOWARDS +Y AXIS  -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_2_attachment_3" parent_link="pole_2_root_link" length="0.05" thickness="0.02">
+    <origin xyz="0.0 0.01 0.20" rpy="${PI/2.0} 0 ${PI}"/>
+  </xacro:square_pole>
+  
+  <!-- ATTACHMENT 4. TOWARDS -Y AXIS  -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_2_attachment_4" parent_link="pole_2_root_link" length="0.05" thickness="0.02">
+    <origin xyz="0 -0.01 0.18" rpy="${PI/2.0} 0 0"/>
+  </xacro:square_pole>
+  <!-- ====================== POLE 2 : END ====================== -->
+
+
+  <!-- ====================== POLE 3 : BEGIN ====================== -->
+  <!-- MAIN SHAFT -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_3" parent_link="ground_plane" length="0.48" thickness="0.02">
+    <origin xyz="0.01 -0.04 0.0" rpy="0 0 0"/>
+  </xacro:square_pole>
+
+  <!-- ATTACHMENT 1. TOWARDS -Y AXIS  -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_3_attachment_1" parent_link="pole_3_root_link" length="0.18" thickness="0.02">
+    <origin xyz="0 -0.01 0.41" rpy="${PI/2.0} 0 0"/>
+  </xacro:square_pole>
+
+  <!-- ATTACHMENT 1.1 TOWARDS +X AXIS wrt to ATTACHMENT 1 -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_3_attachment_1_1" parent_link="pole_3_attachment_1_root_link" length="0.08" thickness="0.02">
+    <origin xyz="0.01 0.0 0.09" rpy="0 ${PI/2.0} 0"/>
+  </xacro:square_pole>
+
+  <!-- ATTACHMENT 1.1.1 TOWARDS -Y AXIS wrt to ATTACHMENT 1.1 -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_3_attachment_1_1_1" parent_link="pole_3_attachment_1_1_root_link" length="0.05" thickness="0.02">
+    <origin xyz="0 -0.01 0.04" rpy="${PI/2.0} 0 0"/>
+  </xacro:square_pole>
+
+  <!-- ATTACHMENT 2. TOWARDS +X AXIS -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_3_attachment_2" parent_link="pole_3_root_link" length="0.05" thickness="0.02">
+    <origin xyz="0.01 0.0 0.34" rpy="${PI/2.0} 0 ${PI/2.0}"/>
+  </xacro:square_pole>
+
+  <!-- ATTACHMENT 3. TOWARDS +Y AXIS  -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_3_attachment_3" parent_link="pole_3_root_link" length="0.05" thickness="0.02">
+    <origin xyz="0.0 0.01 0.18" rpy="${PI/2.0} 0 ${PI}"/>
+  </xacro:square_pole>
+  <!-- ====================== POLE 3 : END ====================== -->
+
+  <!-- ====================== POLE 4 : BEGIN ====================== -->
+  <!-- MAIN SHAFT -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_4" parent_link="ground_plane" length="0.35" thickness="0.02">
+    <origin xyz="-0.05 0.08 0.0" rpy="0 0 0"/>
+  </xacro:square_pole>
+
+  <!-- ATTACHMENT 1. TOWARDS -Y AXIS  -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_4_attachment_1" parent_link="pole_4_root_link" length="0.08" thickness="0.02">
+    <origin xyz="0 -0.01 0.25" rpy="${PI/2.0} 0 0"/>
+  </xacro:square_pole>
+
+  <!-- ATTACHMENT 2. TOWARDS +X AXIS -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_4_attachment_2" parent_link="pole_4_root_link" length="0.08" thickness="0.02">
+    <origin xyz="0.01 0.0 0.22" rpy="${PI/2.0} 0 ${PI/2.0}"/>
+  </xacro:square_pole>
+
+  <!-- ATTACHMENT 3. TOWARDS +Y AXIS  -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_4_attachment_3" parent_link="pole_4_root_link" length="0.08" thickness="0.02">
+    <origin xyz="0.0 0.01 0.28" rpy="${PI/2.0} 0 ${PI}"/>
+  </xacro:square_pole>
+  
+  <!-- ATTACHMENT 4. TOWARDS -X AXIS -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_4_attachment_4" parent_link="pole_4_root_link" length="0.08" thickness="0.02">
+    <origin xyz="-0.01 0.0 0.19" rpy="${PI/2.0} 0 ${3*PI/2.0}"/>
+  </xacro:square_pole>
+  <!-- ====================== POLE 4 : END ====================== -->
+
+
+</robot>

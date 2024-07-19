@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="scene_mingruiyu_0">
+  <xacro:property name="PI" value="3.1415926535897931" />
+
+  <!-- Include statements for macros -->
+  <xacro:include filename="square_pole_macro.xacro"/>
+  
+  <!-- GROUND PLANE -->
+  <link name="ground_plane">
+    <visual>
+      <geometry>
+        <box size="1 1 0.01"/>
+      </geometry>
+      <origin xyz="0 0 -0.005" rpy="0 0 0"/>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="1 1 0.01"/>
+      </geometry>
+      <origin xyz="0 0 -0.005" rpy="0 0 0"/>
+    </collision>
+  </link>
+
+  <!-- OBSTACLES (created from square poles) -->
+  <!-- Creted link has the name: prefix+"_root_link" -->
+  <xacro:square_pole prefix="pole_1" parent_link="ground_plane" length="0.48" thickness="0.06">
+    <origin xyz="0.05 0.0 0.0" rpy="0 0 0"/>
+  </xacro:square_pole>
+
+  <xacro:square_pole prefix="pole_2" parent_link="ground_plane" length="0.4" thickness="0.06">
+    <origin xyz="0.0 -0.2 0.0" rpy="0 0 0"/>
+  </xacro:square_pole>
+
+  <xacro:square_pole prefix="pole_3" parent_link="ground_plane" length="0.32" thickness="0.06">
+    <origin xyz="-0.05 0.2 0.0" rpy="0 0 0"/>
+  </xacro:square_pole>
+
+
+</robot>
