@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="spherical_joint" params="prefix lower_limit upper_limit effort velocity">
+        <!-- Definition of links -->
+        <link name="${prefix}_parent_link"/>
+        <link name="${prefix}_roll_link"/>
+        <link name="${prefix}_pitch_link"/>
+        <link name="${prefix}_yaw_link"/>
+
+        <!-- Revolute joint around Z-axis -->
+        <joint name="${prefix}_yaw_joint" type="revolute">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <parent link="${prefix}_parent_link"/>
+            <child link="${prefix}_yaw_link"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${lower_limit}" upper="${upper_limit}" effort="${effort}" velocity="${velocity}"/>
+        </joint>
+
+        <!-- Revolute joint around Y-axis -->
+        <joint name="${prefix}_pitch_joint" type="revolute">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <parent link="${prefix}_yaw_link"/>
+            <child link="${prefix}_pitch_link"/>
+            <axis xyz="0 1 0"/>
+            <limit lower="${lower_limit}" upper="${upper_limit}" effort="${effort}" velocity="${velocity}"/>
+        </joint>
+        
+        <!-- Revolute joint around X-axis -->
+        <joint name="${prefix}_roll_joint" type="revolute">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <parent link="${prefix}_pitch_link"/>
+            <child link="${prefix}_roll_link"/>
+            <axis xyz="1 0 0"/>
+            <limit lower="${lower_limit}" upper="${upper_limit}" effort="${effort}" velocity="${velocity}"/>
+        </joint>
+        
+    </xacro:macro>
+</robot>

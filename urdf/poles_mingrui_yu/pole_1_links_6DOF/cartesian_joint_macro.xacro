@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="cartesian_joint" params="prefix lower_limit upper_limit effort velocity">
+        <!-- Definition of links -->
+        <link name="${prefix}_parent_link"/>
+        <link name="${prefix}_x_link"/>
+        <link name="${prefix}_y_link"/>
+        <link name="${prefix}_z_link"/>
+
+        <!-- Prismatic joint along X-axis -->
+        <joint name="${prefix}_x_joint" type="prismatic">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <parent link="${prefix}_parent_link"/>
+            <child link="${prefix}_x_link"/>
+            <axis xyz="1 0 0"/>
+            <limit lower="${lower_limit}" upper="${upper_limit}" effort="${effort}" velocity="${velocity}"/>
+        </joint>
+
+        <!-- Prismatic joint along Y-axis -->
+        <joint name="${prefix}_y_joint" type="prismatic">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <parent link="${prefix}_x_link"/>
+            <child link="${prefix}_y_link"/>
+            <axis xyz="0 1 0"/>
+            <limit lower="${lower_limit}" upper="${upper_limit}" effort="${effort}" velocity="${velocity}"/>
+        </joint>
+
+        <!-- Prismatic joint along Z-axis -->
+        <joint name="${prefix}_z_joint" type="prismatic">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <parent link="${prefix}_y_link"/>
+            <child link="${prefix}_z_link"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${lower_limit}" upper="${upper_limit}" effort="${effort}" velocity="${velocity}"/>
+        </joint>
+    </xacro:macro>
+</robot>
