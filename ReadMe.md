@@ -9,7 +9,7 @@ This Python package is used to automatically generate URDFs for deformable linea
 
 ### Usage
 
-Example usage of the package is given in the `dlo_urdf_creator_example.py` file. The `create_dlo_urdf_equal_segment_length` function has the following input and output arguments:
+Example usage of the package is given in the `test_dlo_urdf_creator.py` file. The `create_dlo_urdf_equal_segment_length` function has the following input and output arguments:
 
 #### Input Arguments:
 - `length`: The length of the DLO.
