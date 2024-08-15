@@ -3,11 +3,24 @@ import numpy as np
 from odio_urdf import *
 import yourdfpy # for validating and visualizing the generated URDF
 
-import materials
-
 class DloURDFCreator:
     def __init__(self):
         self.N_global = 1 # Variable to keep track of the link number in the URDF model
+        
+        self.materials = Group(
+            # Material("Black",       Color(rgba="0.1 0.1 0.1 1")),
+            # Material("DarkGrey",    Color(rgba="0.2 0.2 0.2 1.0")),
+            # Material("Grey",        Color(rgba="0.3 0.3 0.3 1.0")),
+            # Material("LightGrey",   Color(rgba="0.4 0.4 0.4 1.0")),
+            # Material("Yellow",      Color(rgba="0.8 0.8 0.0 1.0")),
+            Material("Teal",        Color(rgba="0.0 1.0 1.0 1.0")),
+            # Material("Blue",        Color(rgba="0.0 0.0 0.8 1.0")),
+            # Material("Green",       Color(rgba="0.0 0.8 0.0 1.0")),
+            # Material("Orange",      Color(rgba=str(255.0/255)+" "+str(108.0/255)+" "+str(10.0/255)+" 1.0")),
+            # Material("Brown",       Color(rgba=str(222.0/255)+" "+str(207.0/255)+" "+str(195.0/255)+" 1.0")),
+            # Material("Red",         Color(rgba="0.8 0.0 0.0 1.0")),
+            Material("White",       Color(rgba="1.0 1.0 1.0 1.0"))
+        )
     
     def create_dlo_urdf_equal_segment_length(self,
                                              length=1,
@@ -55,14 +68,14 @@ class DloURDFCreator:
         self.rev_joint_effort = rev_joint_effort
         self.prism_joint_max_velocity = prism_joint_max_velocity
         self.rev_joint_max_velocity = rev_joint_max_velocity
-
-        print("N_global: ", self.N_global)   
+        
+        self.cylindrical_link_names = []
 
         segment_length = length / simplified_dlo_num_segments
-        
+                
         # Build the robot structure
         urdf_obj = Robot(
-            materials.materials,
+            self.materials,
             
             Link(base_link_name),
             Link(model_name+"_link_0"),
@@ -95,7 +108,19 @@ class DloURDFCreator:
         
         urdf_str, is_valid_urdf = self._validate_and_visualize_urdf(str(urdf_obj), visualize=visualize)
         
-        return urdf_str, is_valid_urdf
+        allowed_collision_pairs = self._process_allowed_collision_pairs(self.cylindrical_link_names)
+        
+        return urdf_str, is_valid_urdf, allowed_collision_pairs
+
+    def _process_allowed_collision_pairs(self, cylindrical_link_names):
+        # Assuming only two consecutive cylindrical link can collide with each other        
+
+        allowed_collision_pairs = []
+
+        for i in range(len(cylindrical_link_names) - 1):
+            allowed_collision_pairs.append((cylindrical_link_names[i], cylindrical_link_names[i+1], "Adjacent"))
+        
+        return allowed_collision_pairs
 
     def _prism_joint(self, N,
                      robot_name,
@@ -170,6 +195,7 @@ class DloURDFCreator:
                 Geometry(Cylinder(radius=r, length=l*0.98)),
                 Material(material)),
         name = robot_name+"_link_"+N)
+        self.cylindrical_link_names.append(robot_name+"_link_"+N)
         return ret
 
     def _add_revolute_joints_n_cylinders(self, prefix, 
@@ -378,7 +404,7 @@ def test_dlo_urdf_creator_equal_segment_length(visualize=False):
     dlo_urdf_creator = DloURDFCreator()
     
     # Compute the URDF string
-    urdf_str, is_valid_urdf = dlo_urdf_creator.create_dlo_urdf_equal_segment_length(visualize=visualize)
+    urdf_str, is_valid_urdf, allowed_collision_pairs = dlo_urdf_creator.create_dlo_urdf_equal_segment_length(visualize=visualize)
 
     # Print results
     print("\nURDF string from equal segment length:\n")

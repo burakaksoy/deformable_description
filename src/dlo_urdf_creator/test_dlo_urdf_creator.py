@@ -10,7 +10,7 @@ def test_dlo_urdf_creator_equal_segment_length(visualize=False):
     dlo_urdf_creator = DloURDFCreator()
     
     # Compute the URDF string
-    urdf_str, is_valid_urdf = dlo_urdf_creator.create_dlo_urdf_equal_segment_length(visualize=visualize)
+    urdf_str, is_valid_urdf, allowed_collision_pairs = dlo_urdf_creator.create_dlo_urdf_equal_segment_length(visualize=visualize)
 
     # Print results
     print("\nURDF string from equal segment length:\n")
