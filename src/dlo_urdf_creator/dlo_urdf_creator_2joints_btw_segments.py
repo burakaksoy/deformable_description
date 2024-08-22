@@ -3,6 +3,10 @@ import numpy as np
 from odio_urdf import *
 import yourdfpy # for validating and visualizing the generated URDF
 
+"""
+THIS SCRIPT IS DEPRECATED.
+"""
+
 class DloURDFCreator:
     def __init__(self):
         self.N_global = 1 # Variable to keep track of the link number in the URDF model
@@ -25,11 +29,11 @@ class DloURDFCreator:
     def create_dlo_urdf_equal_segment_length(self,
                                              length=1,
                                              radius=0.01,
-                                             simplified_dlo_num_segments=10, 
+                                             simplified_dlo_num_segments=20, 
                                              full_dlo_num_segments=40,
                                              full_dlo_holding_segment_ids=[5,34],
                                              environment_limits_xyz=[-1, 1, -1, 1, -1, 1],
-                                             joint_angle_limits_xyz_deg=[-90, 90, -180, 180, -45, 45],
+                                             joint_angle_limits_xy_deg=[-90, 90, -180, 180],
                                              model_name="pole",
                                              base_link_name="base_link",
                                              tcp_link_name="tool0",
@@ -51,7 +55,7 @@ class DloURDFCreator:
             full_dlo_num_segments: The number of segments of the full DLO.
             full_dlo_holding_segment_ids: The list of segment IDs that have holding points.
             environment_limits_xyz: The limits of the environment in the x, y, and z directions for the initial end of the DLO.
-            joint_angle_limits_xyz_deg: The limits of the revolute joint angles in the x, y, and z directions in degrees.
+            joint_angle_limits_xy_deg: The limits of the revolute joint angles in the x and y directions in degrees.
             model_name: The name of the DLO as robot in the URDF.
             base_link_name: The name of the base link.
             tcp_link_name: The name of the TCP link as the end tip of the DLO. Needed to be the last link in the URDF for the planner.
@@ -89,7 +93,7 @@ class DloURDFCreator:
             self._add_prismatic_joints(prefix=model_name, limits=environment_limits_xyz),
             
             self._add_revolute_joints_n_cylinders(prefix=model_name, 
-                                            limits=joint_angle_limits_xyz_deg,
+                                            limits=joint_angle_limits_xy_deg,
                                             num_segments=simplified_dlo_num_segments,
                                             segment_r=radius,
                                             segment_l=segment_length, 
@@ -204,27 +208,15 @@ class DloURDFCreator:
                                         segment_r, 
                                         segment_l, 
                                         tcp_link_name): 
-        # Create 3 links for the revolute joint
+        # Create 2 links for the revolute joint
         axes = [ [1, 0, 0], # x-axis
-                [0, 1, 0], # y-axis
-                [0, 0, 1]] # z-axis
+                [0, 1, 0]] # y-axis
         structure = []
         
         for n in range(num_segments):
             
             if n == 0:
                 i = 0
-                
-                link = Link(name=prefix+"_link_"+str(self.N_global))
-                
-                joint = self.rev_joint(self.N_global, prefix, [0, 0, 0], axes[i], [-180, 180], 
-                                       self.rev_joint_effort, self.rev_joint_max_velocity)
-                
-                structure.append(link)
-                structure.append(joint)
-                
-                self.N_global += 1
-                i += 1
                 
                 link = Link(name=prefix+"_link_"+str(self.N_global))
                 
@@ -254,17 +246,6 @@ class DloURDFCreator:
                 link = Link(name=prefix+"_link_"+str(self.N_global))
                 
                 joint = self.rev_joint(self.N_global, prefix, [0, 0, segment_l], axes[i], 
-                                       limits[2*i:2*i+2], self.rev_joint_effort, self.rev_joint_max_velocity)
-                
-                structure.append(link)
-                structure.append(joint)
-                
-                self.N_global += 1
-                i += 1
-                
-                link = Link(name=prefix+"_link_"+str(self.N_global))
-                
-                joint = self.rev_joint(self.N_global, prefix, [0, 0, 0], axes[i], 
                                        limits[2*i:2*i+2], self.rev_joint_effort, self.rev_joint_max_velocity)
                 
                 structure.append(link)
@@ -336,7 +317,7 @@ class DloURDFCreator:
         attachment_segments = pos_of_holding_pts // segment_l
         attachment_positions = pos_of_holding_pts % segment_l 
         
-        attachment_global_frame_ids = attachment_segments * 3 + 6
+        attachment_global_frame_ids = attachment_segments * 2 + 5
         
         # Attach the holding points
         for i in range(len(attachment_segments)):
@@ -358,7 +339,7 @@ class DloURDFCreator:
         attachment_segment = pos_of_center // segment_l
         attachment_position = pos_of_center % segment_l
         
-        attachment_global_frame_id = int(attachment_segment * 3 + 6)
+        attachment_global_frame_id = int(attachment_segment * 2 + 5)
         
         # Attach the center link
         link = Link(name=center_link_name)

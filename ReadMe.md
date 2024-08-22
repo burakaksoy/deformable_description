@@ -18,7 +18,7 @@ Example usage of the package is given in the `test_dlo_urdf_creator.py` file. Th
 - `full_dlo_num_segments`: The number of segments of the full DLO.
 - `full_dlo_holding_segment_ids`: The list of segment IDs that have holding points.
 - `environment_limits_xyz`: The limits of the environment in the x, y, and z directions for the initial end of the DLO.
-- `joint_angle_limits_xy_deg`: The limits of the revolute joint angles in the x and y directions in degrees.
+- `joint_angle_limits_xyz_deg`: The limits of the revolute joint angles in the x, y, and z directions in degrees.
 - `model_name`: The name of the DLO as robot in the URDF.
 - `base_link_name`: The name of the base link.
 - `tcp_link_name`: The name of the TCP link as the end tip of the DLO. Needed to be the last link in the URDF for the planner.
@@ -32,9 +32,9 @@ The package generates a URDF string for the DLO with the given parameters.
 
 #### Assumed Zero-configuration of the DLO and Resulting Example URDF visualizations:
 
-Zero-configuration                |  Example Auto-generated URDF (with 10 segments) | Example Auto-generated URDF (with 20 segments)
+Zero-configuration                |  Example Auto-generated URDF (with 10 segments) |
 :-------------------------:|:-------------------------:|:-------------------------:
-![](./.imgs/Dlo-urdf-zero-config-hand-drawing_cropped.png)  |  ![](./.imgs/example_auto_generated_dlo_10_links_cropped.png) | ![](./.imgs/example_auto_generated_dlo_20_links_cropped.png)
+![](./.imgs/Dlo-urdf-zero-config-hand-drawing_cropped.png)  |  ![](./.imgs/example_auto_generated_dlo_10_links_cropped.png) |
 
 
 ## Manual generation of URDFs:

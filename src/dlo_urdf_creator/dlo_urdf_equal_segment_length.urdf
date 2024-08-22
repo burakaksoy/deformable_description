@@ -19,7 +19,7 @@
   <child  link="pole_link_1" />
   <origin  xyz="0 0 0" />
   <axis  xyz="1 0 0" />
-  <limit  lower="-1"  effort="1"  upper="1"  velocity="1.0" />
+  <limit  upper="1"  velocity="1.0"  effort="1"  lower="-1" />
  </joint>
  <link  name="pole_link_2" />
  <joint  type="prismatic"  name="pole_prism_joint_2" >
@@ -27,7 +27,7 @@
   <child  link="pole_link_2" />
   <origin  xyz="0 0 0" />
   <axis  xyz="0 1 0" />
-  <limit  lower="-1"  effort="1"  upper="1"  velocity="1.0" />
+  <limit  upper="1"  velocity="1.0"  effort="1"  lower="-1" />
  </joint>
  <link  name="pole_link_3" />
  <joint  type="prismatic"  name="pole_prism_joint_3" >
@@ -35,7 +35,7 @@
   <child  link="pole_link_3" />
   <origin  xyz="0 0 0" />
   <axis  xyz="0 0 1" />
-  <limit  lower="-1"  effort="1"  upper="1"  velocity="1.0" />
+  <limit  upper="1"  velocity="1.0"  effort="1"  lower="-1" />
  </joint>
  <link  name="pole_link_4" />
  <joint  type="revolute"  name="pole_rev_joint_4" >
@@ -43,82 +43,67 @@
   <child  link="pole_link_4" />
   <origin  xyz="0 0 0" />
   <axis  xyz="1 0 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
+  <limit  upper="3.141592653589793"  velocity="1.0"  effort="100"  lower="-3.141592653589793" />
  </joint>
- <link  name="pole_link_5" >
-  <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </visual>
-  <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </collision>
- </link>
+ <link  name="pole_link_5" />
  <joint  type="revolute"  name="pole_rev_joint_5" >
   <parent  link="pole_link_4" />
   <child  link="pole_link_5" />
   <origin  xyz="0 0 0" />
   <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
+  <limit  upper="3.141592653589793"  velocity="1.0"  effort="100"  lower="-3.141592653589793" />
  </joint>
- <link  name="pole_link_6" />
- <joint  type="revolute"  name="pole_rev_joint_6" >
-  <parent  link="pole_link_5" />
-  <child  link="pole_link_6" />
-  <origin  xyz="0 0 0.05" />
-  <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
- </joint>
- <link  name="pole_link_7" >
+ <link  name="pole_link_6" >
   <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </visual>
   <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </collision>
  </link>
+ <joint  type="revolute"  name="pole_rev_joint_6" >
+  <parent  link="pole_link_5" />
+  <child  link="pole_link_6" />
+  <origin  xyz="0 0 0" />
+  <axis  xyz="0 0 1" />
+  <limit  upper="3.141592653589793"  velocity="1.0"  effort="100"  lower="-3.141592653589793" />
+ </joint>
+ <link  name="pole_link_7" />
  <joint  type="revolute"  name="pole_rev_joint_7" >
   <parent  link="pole_link_6" />
   <child  link="pole_link_7" />
-  <origin  xyz="0 0 0" />
-  <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
+  <origin  xyz="0 0 0.1" />
+  <axis  xyz="1 0 0" />
+  <limit  upper="1.5707963267948966"  velocity="1.0"  effort="100"  lower="-1.5707963267948966" />
  </joint>
  <link  name="pole_link_8" />
  <joint  type="revolute"  name="pole_rev_joint_8" >
   <parent  link="pole_link_7" />
   <child  link="pole_link_8" />
-  <origin  xyz="0 0 0.05" />
-  <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
+  <origin  xyz="0 0 0" />
+  <axis  xyz="0 1 0" />
+  <limit  upper="3.141592653589793"  velocity="1.0"  effort="100"  lower="-3.141592653589793" />
  </joint>
  <link  name="pole_link_9" >
   <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </visual>
   <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </collision>
@@ -127,91 +112,76 @@
   <parent  link="pole_link_8" />
   <child  link="pole_link_9" />
   <origin  xyz="0 0 0" />
-  <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
+  <axis  xyz="0 0 1" />
+  <limit  upper="0.17453292519943295"  velocity="1.0"  effort="100"  lower="-0.17453292519943295" />
  </joint>
  <link  name="pole_link_10" />
  <joint  type="revolute"  name="pole_rev_joint_10" >
   <parent  link="pole_link_9" />
   <child  link="pole_link_10" />
-  <origin  xyz="0 0 0.05" />
+  <origin  xyz="0 0 0.1" />
   <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
+  <limit  upper="1.5707963267948966"  velocity="1.0"  effort="100"  lower="-1.5707963267948966" />
  </joint>
- <link  name="pole_link_11" >
-  <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </visual>
-  <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </collision>
- </link>
+ <link  name="pole_link_11" />
  <joint  type="revolute"  name="pole_rev_joint_11" >
   <parent  link="pole_link_10" />
   <child  link="pole_link_11" />
   <origin  xyz="0 0 0" />
   <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
+  <limit  upper="3.141592653589793"  velocity="1.0"  effort="100"  lower="-3.141592653589793" />
  </joint>
- <link  name="pole_link_12" />
- <joint  type="revolute"  name="pole_rev_joint_12" >
-  <parent  link="pole_link_11" />
-  <child  link="pole_link_12" />
-  <origin  xyz="0 0 0.05" />
-  <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
- </joint>
- <link  name="pole_link_13" >
+ <link  name="pole_link_12" >
   <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </visual>
   <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </collision>
  </link>
+ <joint  type="revolute"  name="pole_rev_joint_12" >
+  <parent  link="pole_link_11" />
+  <child  link="pole_link_12" />
+  <origin  xyz="0 0 0" />
+  <axis  xyz="0 0 1" />
+  <limit  upper="0.17453292519943295"  velocity="1.0"  effort="100"  lower="-0.17453292519943295" />
+ </joint>
+ <link  name="pole_link_13" />
  <joint  type="revolute"  name="pole_rev_joint_13" >
   <parent  link="pole_link_12" />
   <child  link="pole_link_13" />
-  <origin  xyz="0 0 0" />
-  <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
+  <origin  xyz="0 0 0.1" />
+  <axis  xyz="1 0 0" />
+  <limit  upper="1.5707963267948966"  velocity="1.0"  effort="100"  lower="-1.5707963267948966" />
  </joint>
  <link  name="pole_link_14" />
  <joint  type="revolute"  name="pole_rev_joint_14" >
   <parent  link="pole_link_13" />
   <child  link="pole_link_14" />
-  <origin  xyz="0 0 0.05" />
-  <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
+  <origin  xyz="0 0 0" />
+  <axis  xyz="0 1 0" />
+  <limit  upper="3.141592653589793"  velocity="1.0"  effort="100"  lower="-3.141592653589793" />
  </joint>
  <link  name="pole_link_15" >
   <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </visual>
   <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </collision>
@@ -220,91 +190,76 @@
   <parent  link="pole_link_14" />
   <child  link="pole_link_15" />
   <origin  xyz="0 0 0" />
-  <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
+  <axis  xyz="0 0 1" />
+  <limit  upper="0.17453292519943295"  velocity="1.0"  effort="100"  lower="-0.17453292519943295" />
  </joint>
  <link  name="pole_link_16" />
  <joint  type="revolute"  name="pole_rev_joint_16" >
   <parent  link="pole_link_15" />
   <child  link="pole_link_16" />
-  <origin  xyz="0 0 0.05" />
+  <origin  xyz="0 0 0.1" />
   <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
+  <limit  upper="1.5707963267948966"  velocity="1.0"  effort="100"  lower="-1.5707963267948966" />
  </joint>
- <link  name="pole_link_17" >
-  <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </visual>
-  <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </collision>
- </link>
+ <link  name="pole_link_17" />
  <joint  type="revolute"  name="pole_rev_joint_17" >
   <parent  link="pole_link_16" />
   <child  link="pole_link_17" />
   <origin  xyz="0 0 0" />
   <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
+  <limit  upper="3.141592653589793"  velocity="1.0"  effort="100"  lower="-3.141592653589793" />
  </joint>
- <link  name="pole_link_18" />
- <joint  type="revolute"  name="pole_rev_joint_18" >
-  <parent  link="pole_link_17" />
-  <child  link="pole_link_18" />
-  <origin  xyz="0 0 0.05" />
-  <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
- </joint>
- <link  name="pole_link_19" >
+ <link  name="pole_link_18" >
   <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </visual>
   <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </collision>
  </link>
+ <joint  type="revolute"  name="pole_rev_joint_18" >
+  <parent  link="pole_link_17" />
+  <child  link="pole_link_18" />
+  <origin  xyz="0 0 0" />
+  <axis  xyz="0 0 1" />
+  <limit  upper="0.17453292519943295"  velocity="1.0"  effort="100"  lower="-0.17453292519943295" />
+ </joint>
+ <link  name="pole_link_19" />
  <joint  type="revolute"  name="pole_rev_joint_19" >
   <parent  link="pole_link_18" />
   <child  link="pole_link_19" />
-  <origin  xyz="0 0 0" />
-  <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
+  <origin  xyz="0 0 0.1" />
+  <axis  xyz="1 0 0" />
+  <limit  upper="1.5707963267948966"  velocity="1.0"  effort="100"  lower="-1.5707963267948966" />
  </joint>
  <link  name="pole_link_20" />
  <joint  type="revolute"  name="pole_rev_joint_20" >
   <parent  link="pole_link_19" />
   <child  link="pole_link_20" />
-  <origin  xyz="0 0 0.05" />
-  <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
+  <origin  xyz="0 0 0" />
+  <axis  xyz="0 1 0" />
+  <limit  upper="3.141592653589793"  velocity="1.0"  effort="100"  lower="-3.141592653589793" />
  </joint>
  <link  name="pole_link_21" >
   <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </visual>
   <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </collision>
@@ -313,91 +268,76 @@
   <parent  link="pole_link_20" />
   <child  link="pole_link_21" />
   <origin  xyz="0 0 0" />
-  <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
+  <axis  xyz="0 0 1" />
+  <limit  upper="0.17453292519943295"  velocity="1.0"  effort="100"  lower="-0.17453292519943295" />
  </joint>
  <link  name="pole_link_22" />
  <joint  type="revolute"  name="pole_rev_joint_22" >
   <parent  link="pole_link_21" />
   <child  link="pole_link_22" />
-  <origin  xyz="0 0 0.05" />
+  <origin  xyz="0 0 0.1" />
   <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
+  <limit  upper="1.5707963267948966"  velocity="1.0"  effort="100"  lower="-1.5707963267948966" />
  </joint>
- <link  name="pole_link_23" >
-  <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </visual>
-  <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </collision>
- </link>
+ <link  name="pole_link_23" />
  <joint  type="revolute"  name="pole_rev_joint_23" >
   <parent  link="pole_link_22" />
   <child  link="pole_link_23" />
   <origin  xyz="0 0 0" />
   <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
+  <limit  upper="3.141592653589793"  velocity="1.0"  effort="100"  lower="-3.141592653589793" />
  </joint>
- <link  name="pole_link_24" />
- <joint  type="revolute"  name="pole_rev_joint_24" >
-  <parent  link="pole_link_23" />
-  <child  link="pole_link_24" />
-  <origin  xyz="0 0 0.05" />
-  <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
- </joint>
- <link  name="pole_link_25" >
+ <link  name="pole_link_24" >
   <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </visual>
   <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </collision>
  </link>
+ <joint  type="revolute"  name="pole_rev_joint_24" >
+  <parent  link="pole_link_23" />
+  <child  link="pole_link_24" />
+  <origin  xyz="0 0 0" />
+  <axis  xyz="0 0 1" />
+  <limit  upper="0.17453292519943295"  velocity="1.0"  effort="100"  lower="-0.17453292519943295" />
+ </joint>
+ <link  name="pole_link_25" />
  <joint  type="revolute"  name="pole_rev_joint_25" >
   <parent  link="pole_link_24" />
   <child  link="pole_link_25" />
-  <origin  xyz="0 0 0" />
-  <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
+  <origin  xyz="0 0 0.1" />
+  <axis  xyz="1 0 0" />
+  <limit  upper="1.5707963267948966"  velocity="1.0"  effort="100"  lower="-1.5707963267948966" />
  </joint>
  <link  name="pole_link_26" />
  <joint  type="revolute"  name="pole_rev_joint_26" >
   <parent  link="pole_link_25" />
   <child  link="pole_link_26" />
-  <origin  xyz="0 0 0.05" />
-  <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
+  <origin  xyz="0 0 0" />
+  <axis  xyz="0 1 0" />
+  <limit  upper="3.141592653589793"  velocity="1.0"  effort="100"  lower="-3.141592653589793" />
  </joint>
  <link  name="pole_link_27" >
   <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </visual>
   <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </collision>
@@ -406,91 +346,76 @@
   <parent  link="pole_link_26" />
   <child  link="pole_link_27" />
   <origin  xyz="0 0 0" />
-  <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
+  <axis  xyz="0 0 1" />
+  <limit  upper="0.17453292519943295"  velocity="1.0"  effort="100"  lower="-0.17453292519943295" />
  </joint>
  <link  name="pole_link_28" />
  <joint  type="revolute"  name="pole_rev_joint_28" >
   <parent  link="pole_link_27" />
   <child  link="pole_link_28" />
-  <origin  xyz="0 0 0.05" />
+  <origin  xyz="0 0 0.1" />
   <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
+  <limit  upper="1.5707963267948966"  velocity="1.0"  effort="100"  lower="-1.5707963267948966" />
  </joint>
- <link  name="pole_link_29" >
-  <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </visual>
-  <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </collision>
- </link>
+ <link  name="pole_link_29" />
  <joint  type="revolute"  name="pole_rev_joint_29" >
   <parent  link="pole_link_28" />
   <child  link="pole_link_29" />
   <origin  xyz="0 0 0" />
   <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
+  <limit  upper="3.141592653589793"  velocity="1.0"  effort="100"  lower="-3.141592653589793" />
  </joint>
- <link  name="pole_link_30" />
- <joint  type="revolute"  name="pole_rev_joint_30" >
-  <parent  link="pole_link_29" />
-  <child  link="pole_link_30" />
-  <origin  xyz="0 0 0.05" />
-  <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
- </joint>
- <link  name="pole_link_31" >
+ <link  name="pole_link_30" >
   <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </visual>
   <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </collision>
  </link>
+ <joint  type="revolute"  name="pole_rev_joint_30" >
+  <parent  link="pole_link_29" />
+  <child  link="pole_link_30" />
+  <origin  xyz="0 0 0" />
+  <axis  xyz="0 0 1" />
+  <limit  upper="0.17453292519943295"  velocity="1.0"  effort="100"  lower="-0.17453292519943295" />
+ </joint>
+ <link  name="pole_link_31" />
  <joint  type="revolute"  name="pole_rev_joint_31" >
   <parent  link="pole_link_30" />
   <child  link="pole_link_31" />
-  <origin  xyz="0 0 0" />
-  <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
+  <origin  xyz="0 0 0.1" />
+  <axis  xyz="1 0 0" />
+  <limit  upper="1.5707963267948966"  velocity="1.0"  effort="100"  lower="-1.5707963267948966" />
  </joint>
  <link  name="pole_link_32" />
  <joint  type="revolute"  name="pole_rev_joint_32" >
   <parent  link="pole_link_31" />
   <child  link="pole_link_32" />
-  <origin  xyz="0 0 0.05" />
-  <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
+  <origin  xyz="0 0 0" />
+  <axis  xyz="0 1 0" />
+  <limit  upper="3.141592653589793"  velocity="1.0"  effort="100"  lower="-3.141592653589793" />
  </joint>
  <link  name="pole_link_33" >
   <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </visual>
   <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
+   <origin  rpy="0 0 0"  xyz="0 0 0.05" />
    <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
+    <cylinder  length="0.098"  radius="0.01" />
    </geometry>
    <material  name="Teal" />
   </collision>
@@ -499,173 +424,18 @@
   <parent  link="pole_link_32" />
   <child  link="pole_link_33" />
   <origin  xyz="0 0 0" />
-  <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
+  <axis  xyz="0 0 1" />
+  <limit  upper="0.17453292519943295"  velocity="1.0"  effort="100"  lower="-0.17453292519943295" />
  </joint>
  <link  name="pole_link_34" />
- <joint  type="revolute"  name="pole_rev_joint_34" >
+ <joint  type="fixed"  name="pole_end_joint" >
   <parent  link="pole_link_33" />
   <child  link="pole_link_34" />
-  <origin  xyz="0 0 0.05" />
-  <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
- </joint>
- <link  name="pole_link_35" >
-  <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </visual>
-  <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </collision>
- </link>
- <joint  type="revolute"  name="pole_rev_joint_35" >
-  <parent  link="pole_link_34" />
-  <child  link="pole_link_35" />
-  <origin  xyz="0 0 0" />
-  <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
- </joint>
- <link  name="pole_link_36" />
- <joint  type="revolute"  name="pole_rev_joint_36" >
-  <parent  link="pole_link_35" />
-  <child  link="pole_link_36" />
-  <origin  xyz="0 0 0.05" />
-  <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
- </joint>
- <link  name="pole_link_37" >
-  <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </visual>
-  <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </collision>
- </link>
- <joint  type="revolute"  name="pole_rev_joint_37" >
-  <parent  link="pole_link_36" />
-  <child  link="pole_link_37" />
-  <origin  xyz="0 0 0" />
-  <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
- </joint>
- <link  name="pole_link_38" />
- <joint  type="revolute"  name="pole_rev_joint_38" >
-  <parent  link="pole_link_37" />
-  <child  link="pole_link_38" />
-  <origin  xyz="0 0 0.05" />
-  <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
- </joint>
- <link  name="pole_link_39" >
-  <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </visual>
-  <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </collision>
- </link>
- <joint  type="revolute"  name="pole_rev_joint_39" >
-  <parent  link="pole_link_38" />
-  <child  link="pole_link_39" />
-  <origin  xyz="0 0 0" />
-  <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
- </joint>
- <link  name="pole_link_40" />
- <joint  type="revolute"  name="pole_rev_joint_40" >
-  <parent  link="pole_link_39" />
-  <child  link="pole_link_40" />
-  <origin  xyz="0 0 0.05" />
-  <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
- </joint>
- <link  name="pole_link_41" >
-  <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </visual>
-  <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </collision>
- </link>
- <joint  type="revolute"  name="pole_rev_joint_41" >
-  <parent  link="pole_link_40" />
-  <child  link="pole_link_41" />
-  <origin  xyz="0 0 0" />
-  <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
- </joint>
- <link  name="pole_link_42" />
- <joint  type="revolute"  name="pole_rev_joint_42" >
-  <parent  link="pole_link_41" />
-  <child  link="pole_link_42" />
-  <origin  xyz="0 0 0.05" />
-  <axis  xyz="1 0 0" />
-  <limit  lower="-1.5707963267948966"  effort="100"  upper="1.5707963267948966"  velocity="1.0" />
- </joint>
- <link  name="pole_link_43" >
-  <visual >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </visual>
-  <collision >
-   <origin  rpy="0 0 0"  xyz="0 0 0.025" />
-   <geometry >
-    <cylinder  length="0.049"  radius="0.01" />
-   </geometry>
-   <material  name="Teal" />
-  </collision>
- </link>
- <joint  type="revolute"  name="pole_rev_joint_43" >
-  <parent  link="pole_link_42" />
-  <child  link="pole_link_43" />
-  <origin  xyz="0 0 0" />
-  <axis  xyz="0 1 0" />
-  <limit  lower="-3.141592653589793"  effort="100"  upper="3.141592653589793"  velocity="1.0" />
- </joint>
- <link  name="pole_link_44" />
- <joint  type="fixed"  name="pole_end_joint" >
-  <parent  link="pole_link_43" />
-  <child  link="pole_link_44" />
-  <origin  rpy="0 0 0"  xyz="0 0 0.05" />
+  <origin  rpy="0 0 0"  xyz="0 0 0.1" />
  </joint>
  <link  name="tool0" />
  <joint  type="fixed"  name="pole_tcp_joint" >
-  <parent  link="pole_link_44" />
+  <parent  link="pole_link_34" />
   <child  link="tool0" />
   <origin  rpy="0 0 0"  xyz="0 0 0" />
  </joint>
@@ -677,14 +447,14 @@
  </joint>
  <link  name="pole_holder_link_34" />
  <joint  type="fixed"  name="pole_holding_joint_1" >
-  <parent  link="pole_link_39" />
+  <parent  link="pole_link_30" />
   <child  link="pole_holder_link_34" />
-  <origin  rpy="0 0 0"  xyz="0 0 0.012499999999999997" />
+  <origin  rpy="0 0 0"  xyz="0 0 0.0625" />
  </joint>
  <link  name="center_link" />
  <joint  type="fixed"  name="pole_center_joint" >
-  <parent  link="pole_link_23" />
+  <parent  link="pole_link_18" />
   <child  link="center_link" />
-  <origin  rpy="0 0 0"  xyz="0 0 0.049999999999999975" />
+  <origin  rpy="0 0 0"  xyz="0 0 0.09999999999999998" />
  </joint>
 </robot>
