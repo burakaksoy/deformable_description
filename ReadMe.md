@@ -33,7 +33,7 @@ The package generates a URDF string for the DLO with the given parameters.
 #### Assumed Zero-configuration of the DLO and Resulting Example URDF visualizations:
 
 Zero-configuration                |  Example Auto-generated URDF (with 10 segments) |
-:-------------------------:|:-------------------------:|:-------------------------:
+:-------------------------:|:-------------------------:|
 ![](./.imgs/Dlo-urdf-zero-config-hand-drawing_cropped.png)  |  ![](./.imgs/example_auto_generated_dlo_10_links_cropped.png) |
 
 
