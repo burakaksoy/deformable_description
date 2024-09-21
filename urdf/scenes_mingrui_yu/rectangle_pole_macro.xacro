@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="materials.xacro"/>
+
+    <xacro:macro name="rectangle_pole" params="prefix parent_link length thickness_x thickness_y *root_pose">
+        <link name="${prefix}_root_link">
+            <visual>
+                <geometry>
+                    <box size="${thickness_x} ${thickness_y} ${length}"/>
+                </geometry>
+                <origin xyz="0 0 ${length / 2.0}" rpy="0 0 0"/>
+                <material name="orange"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${thickness_x} ${thickness_y} ${length}"/>
+                </geometry>
+                <origin xyz="0 0 ${length / 2.0}" rpy="0 0 0"/>
+            </collision>
+        </link>
+
+        <joint name="${prefix}_fixture_joint" type="fixed">
+            <parent link="${parent_link}"/>
+            <child link="${prefix}_root_link" />
+            <xacro:insert_block name="root_pose" />
+        </joint>
+
+    </xacro:macro>
+</robot>
