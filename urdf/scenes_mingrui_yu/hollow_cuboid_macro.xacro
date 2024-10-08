@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- <xacro:include filename="materials.xacro"/> -->
+
+    <!-- Macro to create a hollow cuboid -->
+    <xacro:macro name="hollow_cuboid" params="prefix parent_link length width height wall_thickness corridor_width">
+        <!-- Calculate half dimensions -->
+        <xacro:property name="half_length" value="${length / 2}"/>
+        <xacro:property name="half_width" value="${width / 2}"/>
+        <xacro:property name="half_wall_thickness" value="${wall_thickness / 2}"/>
+
+        <!-- Left Wall -->
+        <link name="${prefix}_left_wall">
+            <visual>
+                <geometry>
+                    <box size="${wall_thickness} ${width + 2 * wall_thickness} ${height}"/>
+                </geometry>
+                <origin xyz="0 0 ${height / 2}" rpy="0 0 0"/>
+                <material name="gray"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${wall_thickness} ${width + 2 * wall_thickness} ${height}"/>
+                </geometry>
+                <origin xyz="0 0 ${height / 2}" rpy="0 0 0"/>
+            </collision>
+        </link>
+        <joint name="${prefix}_left_wall_joint" type="fixed">
+            <parent link="${parent_link}"/>
+            <child link="${prefix}_left_wall"/>
+            <origin xyz="${- (half_length + half_wall_thickness)} 0 0" rpy="0 0 0"/>
+        </joint>
+
+        <!-- Right Wall -->
+        <link name="${prefix}_right_wall">
+            <visual>
+                <geometry>
+                    <box size="${wall_thickness} ${width + 2 * wall_thickness} ${height}"/>
+                </geometry>
+                <origin xyz="0 0 ${height / 2}" rpy="0 0 0"/>
+                <material name="gray"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${wall_thickness} ${width + 2 * wall_thickness} ${height}"/>
+                </geometry>
+                <origin xyz="0 0 ${height / 2}" rpy="0 0 0"/>
+            </collision>
+        </link>
+        <joint name="${prefix}_right_wall_joint" type="fixed">
+            <parent link="${parent_link}"/>
+            <child link="${prefix}_right_wall"/>
+            <origin xyz="${half_length + half_wall_thickness} 0 0" rpy="0 0 0"/>
+        </joint>
+
+        <!-- Front Wall -->
+        <link name="${prefix}_front_wall">
+            <visual>
+                <geometry>
+                    <box size="${length} ${wall_thickness} ${height}"/>
+                </geometry>
+                <origin xyz="0 0 ${height / 2}" rpy="0 0 0"/>
+                <material name="gray"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${length} ${wall_thickness} ${height}"/>
+                </geometry>
+                <origin xyz="0 0 ${height / 2}" rpy="0 0 0"/>
+            </collision>
+        </link>
+        <joint name="${prefix}_front_wall_joint" type="fixed">
+            <parent link="${parent_link}"/>
+            <child link="${prefix}_front_wall"/>
+            <origin xyz="0 ${half_width + half_wall_thickness} 0" rpy="0 0 0"/>
+        </joint>
+
+        <!-- Back Wall -->
+        <link name="${prefix}_back_wall">
+            <visual>
+                <geometry>
+                    <box size="${length} ${wall_thickness} ${height}"/>
+                </geometry>
+                <origin xyz="0 0 ${height / 2}" rpy="0 0 0"/>
+                <material name="gray"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${length} ${wall_thickness} ${height}"/>
+                </geometry>
+                <origin xyz="0 0 ${height / 2}" rpy="0 0 0"/>
+            </collision>
+        </link>
+        <joint name="${prefix}_back_wall_joint" type="fixed">
+            <parent link="${parent_link}"/>
+            <child link="${prefix}_back_wall"/>
+            <origin xyz="0 ${- (half_width + half_wall_thickness)} 0" rpy="0 0 0"/>
+        </joint>
+
+        <!-- Top Wall -->
+        <link name="${prefix}_top_wall">
+            <visual>
+                <geometry>
+                    <box size="${length} ${width} ${wall_thickness}"/>
+                </geometry>
+                <origin xyz="0 0 ${wall_thickness/2}" rpy="0 0 0"/>
+                <material name="gray"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${length} ${width} ${wall_thickness}"/>
+                </geometry>
+                <origin xyz="0 0 ${wall_thickness/2}" rpy="0 0 0"/>
+            </collision>
+        </link>
+        <joint name="${prefix}_top_wall_joint" type="fixed">
+            <parent link="${parent_link}"/>
+            <child link="${prefix}_top_wall"/>
+            <origin xyz="0 0 ${height}" rpy="0 0 0"/>
+        </joint>
+
+        <!-- Back INNER Wall -->
+        <link name="${prefix}_back_inner_wall">
+            <visual>
+                <geometry>
+                    <box size="${wall_thickness} ${width/2-corridor_width/2}  ${height}"/>
+                </geometry>
+                <origin xyz="0 ${-0.5*(width/2-corridor_width/2)} ${height / 2}" rpy="0 0 0"/>
+                <material name="orange"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${wall_thickness} ${width/2-corridor_width/2}  ${height}"/>
+                </geometry>
+                <origin xyz="0 ${-0.5*(width/2-corridor_width/2)} ${height / 2}" rpy="0 0 0"/>
+            </collision>
+        </link>
+        <joint name="${prefix}_back_inner_wall_joint" type="fixed">
+            <parent link="${parent_link}"/>
+            <child link="${prefix}_back_inner_wall"/>
+            <origin xyz="0 ${-corridor_width/2} 0" rpy="0 0 0"/>
+        </joint>
+
+        <!-- Front INNER Wall -->
+        <link name="${prefix}_front_inner_wall">
+            <visual>
+                <geometry>
+                    <box size="${wall_thickness} ${width/2-corridor_width/2}  ${height}"/>
+                </geometry>
+                <origin xyz="0 ${0.5*(width/2-corridor_width/2)} ${height / 2}" rpy="0 0 0"/>
+                <material name="orange"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${wall_thickness} ${width/2-corridor_width/2}  ${height}"/>
+                </geometry>
+                <origin xyz="0 ${0.5*(width/2-corridor_width/2)} ${height / 2}" rpy="0 0 0"/>
+            </collision>
+        </link>
+        <joint name="${prefix}_front_inner_wall_joint" type="fixed">
+            <parent link="${parent_link}"/>
+            <child link="${prefix}_front_inner_wall"/>
+            <origin xyz="0 ${corridor_width/2} 0" rpy="0 0 0"/>
+        </joint>
+
+    </xacro:macro>
+
+</robot>

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="scene_mingruiyu_7">
+  <!-- <xacro:include filename="materials.xacro"/> -->
+
+  <xacro:property name="PI" value="3.1415926535897931" />
+  <xacro:property name="l_x" value="0.4" />
+  <xacro:property name="l_y" value="1" />
+  <xacro:property name="d" value="0.01" />
+  <xacro:property name="h" value="0.7" />
+  <xacro:property name="corridor_w" value="0.2" />
+
+  <!-- Include statements for macros -->
+  <xacro:include filename="rectangle_pole_macro.xacro"/>
+  <xacro:include filename="hollow_cuboid_macro.xacro"/>
+
+  <!-- GROUND PLANE -->
+  <link name="ground_plane">
+    <visual>
+      <geometry>
+        <box size="${l_x} ${l_y} ${d}"/>
+      </geometry>
+      <origin xyz="0 0 ${-d/2}" rpy="0 0 0"/>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${l_x} ${l_y} ${d}"/>
+      </geometry>
+      <origin xyz="0 0 ${-d/2}" rpy="0 0 0"/>
+    </collision>
+  </link>
+
+  <!-- Use the hollow_cuboid macro -->
+  <xacro:hollow_cuboid prefix="cuboid" 
+                        parent_link="ground_plane" 
+                        length="${l_x}" 
+                        width="${l_y}" 
+                        height="${h}" 
+                        corridor_width="${corridor_w}"
+                        wall_thickness="${d}"/>
+
+  <!-- OBSTACLES (created from square poles) -->
+  <!-- ====================== POLE 1 : BEGIN ====================== -->
+  <!-- Created link has the name: prefix+"_root_link" -->
+  <xacro:rectangle_pole prefix="pole_1" parent_link="ground_plane" length="0.4" thickness_x="0.06" thickness_y="0.06">
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+  </xacro:rectangle_pole>
+  <!-- ====================== POLE 1 : END ====================== -->
+
+
+
+</robot>
